@@ -6,12 +6,12 @@ const Navbar = () => {
     <>
       <li>
         <button>
-          <Link>Log In</Link>
+          <Link to='/login'>Log In</Link>
         </button>
       </li>
       <li>
         <button>
-          <Link>Log Out</Link>
+          <Link to='/'>Log Out</Link>
         </button>
       </li>
     </>
