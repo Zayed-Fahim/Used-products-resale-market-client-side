@@ -1,24 +1,32 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Signup = () => {
-    const {createUser} = useContext(AuthContext)
+    const { createUser, googleSignIn } = useContext(AuthContext);
+    const navigate = useNavigate();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-    const handleSignUp = (data) =>
-        createUser(data.email, data.password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-            })
-        .catch(error => console.error(error))
-    ;
+  const handleSignUp = (data) => {
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+    };
+    const handleGoogleLogin = () => {
+      googleSignIn().then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate("/");
+      });
+    };
   return (
     <div className="hero mt-20">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -99,16 +107,19 @@ const Signup = () => {
                 </Link>
               </p>
               <div className="divider">OR</div>
-              <button className="flex justify-center items-center gap-3 border-4 p-3 rounded-lg">
-                <div>
-                  <FcGoogle className="w-6 h-6"></FcGoogle>
-                </div>
-                <div>
-                  <p>GOOGLE</p>
-                </div>
-              </button>
             </div>
           </form>
+          <button
+            onClick={handleGoogleLogin}
+            className="flex justify-center items-center gap-3 border-4 p-3 rounded-lg lg:w-[26rem] w-[19.75rem] h-[3rem] lg:h-[3rem] mx-auto mb-16"
+          >
+            <div>
+              <FcGoogle className="w-6 h-6"></FcGoogle>
+            </div>
+            <div>
+              <p>GOOGLE</p>
+            </div>
+          </button>
         </div>
       </div>
     </div>

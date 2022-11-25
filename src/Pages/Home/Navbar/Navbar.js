@@ -19,13 +19,17 @@ const Navbar = () => {
       {user?.email ? (
         <li>
           <button onClick={handleLogOut}>
-            <Link to="/">Log Out</Link>
+            <Link className="text-xl font-semibold" to="/">
+              Log Out
+            </Link>
           </button>
         </li>
       ) : (
         <li>
           <button>
-            <Link to="/login">Log In</Link>
+            <Link className="text-xl font-semibold" to="/login">
+              Log In
+            </Link>
           </button>
         </li>
       )}
@@ -56,10 +60,15 @@ const Navbar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to='/'>Home</Link>
+              <Link className="text-xl font-semibold" to="/">
+                Home
+              </Link>
             </li>
             <li tabIndex={0}>
-              <Link to='/categories' className="justify-between">
+              <Link
+                to="/categories"
+                className="justify-between text-xl font-semibold"
+              >
                 Categories
                 <svg
                   className="fill-current"
@@ -73,33 +82,40 @@ const Navbar = () => {
               </Link>
               <ul className="p-2">
                 <li>
-                  <Link>Android</Link>
+                  <Link className="text-xl font-semibold">Android</Link>
                 </li>
                 <li>
-                  <Link>Tablet/ipad</Link>
+                  <Link className="text-xl font-semibold">Tablet/ipad</Link>
                 </li>
                 <li>
-                  <Link>iphone</Link>
+                  <Link className="text-xl font-semibold">iphone</Link>
                 </li>
               </ul>
             </li>
             <li>
-              <Link to='/blogs'>Blogs</Link>
+              <Link className="text-xl font-semibold" to="/blogs">
+                Blogs
+              </Link>
             </li>
             {menuItems}
           </ul>
         </div>
-        <Link to='/' className="btn btn-ghost w-[100px] normal-case text-xl navbar-start">
-          daisyUI
+        <Link
+          to="/"
+          className="w-[8vw] normal-case text-3xl navbar-start font-bold"
+        >
+          second<span className="text-primary">Sell</span>
         </Link>
       </div>
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
           <li>
-            <Link to='/'>Home</Link>
+            <Link className="text-xl font-semibold" to="/">
+              Home
+            </Link>
           </li>
           <li tabIndex={0}>
-            <Link>
+            <Link className="text-xl font-semibold">
               Categories
               <svg
                 className="fill-current"
@@ -113,18 +129,20 @@ const Navbar = () => {
             </Link>
             <ul className="p-2">
               <li>
-                <Link>Android</Link>
+                <Link className="text-xl font-semibold">Android</Link>
               </li>
               <li>
-                <Link>Tablet/ipad</Link>
+                <Link className="text-xl font-semibold">Tablet/ipad</Link>
               </li>
               <li>
-                <Link>Iphone</Link>
+                <Link className="text-xl font-semibold">Iphone</Link>
               </li>
             </ul>
           </li>
           <li>
-            <Link to='/blogs'>Blogs</Link>
+            <Link className="text-xl font-semibold" to="/blogs">
+              Blogs
+            </Link>
           </li>
           {menuItems}
         </ul>

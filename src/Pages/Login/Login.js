@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+    const { signIn, googleSignIn } = useContext(AuthContext);
+    const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -19,6 +20,14 @@ const Login = () => {
       })
       .catch((error) => console.error(error));
     };
+    const handleGoogleLogin = () => {
+        googleSignIn()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate('/')
+        })
+    }
     
   return (
     <div className="hero mt-20">
@@ -82,16 +91,19 @@ const Login = () => {
                 </Link>
               </p>
               <div className="divider">OR</div>
-              <button className="flex justify-center items-center gap-3 border-4 p-3 rounded-lg my-2">
-                <div>
-                  <FcGoogle className="w-6 h-6"></FcGoogle>
-                </div>
-                <div>
-                  <p>GOOGLE</p>
-                </div>
-              </button>
             </div>
           </form>
+          <button
+            onClick={handleGoogleLogin}
+            className="flex justify-center items-center gap-3 border-4 p-3 rounded-lg lg:w-[26rem] w-[19.75rem] h-[3rem] lg:h-[3rem] mx-auto mb-16"
+          >
+            <div>
+              <FcGoogle className="w-6 h-6"></FcGoogle>
+            </div>
+            <div>
+              <p>GOOGLE</p>
+            </div>
+          </button>
         </div>
       </div>
     </div>
