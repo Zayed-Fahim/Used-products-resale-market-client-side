@@ -1,24 +1,48 @@
-import React, { createContext } from 'react';
-import {createUserWithEmailAndPassword, getAuth} from 'firebase/auth'
-import app from '../../firebase/firebase.config';
+import React, { createContext, useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut
+} from "firebase/auth";
+import app from "../../firebase/firebase.config";
 
-const AuthContexts = createContext();
+export const AuthContext = createContext();
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
-    const createUser = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password);
+  const [user, setUser] = useState(null);
+  const createUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const signIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+    };
+    
+    const logOut = () => {
+        return signOut(auth);
     }
 
-    const authInfo = {
-        createUser
-    }
-    return (
-        <div>
-            <AuthContexts.Provider value={authInfo}>
-                {children}
-            </AuthContexts.Provider>
-        </div>
-    );
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (createUser) => {
+      console.log("user observing");
+      setUser(createUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const authInfo = {
+    createUser,
+    user,
+    signIn,
+    logOut,
+  };
+  return (
+    <div>
+      <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    </div>
+  );
 };
 
 export default AuthProvider;

@@ -1,22 +1,36 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        console.log("signout successfully");
+        navigate('/')
+      })
+      .catch((error) => console.error(error));
+  };
   const menuItems = (
     <>
-      <li>
-        <button>
-          <Link to='/login'>Log In</Link>
-        </button>
-      </li>
-      <li>
-        <button>
-          <Link to='/'>Log Out</Link>
-        </button>
-      </li>
+      {user?.email ? (
+        <li>
+          <button onClick={handleLogOut}>
+            <Link to="/">Log Out</Link>
+          </button>
+        </li>
+      ) : (
+        <li>
+          <button>
+            <Link to="/login">Log In</Link>
+          </button>
+        </li>
+      )}
     </>
   );
-
   return (
     <div className="navbar bg-base-100 container mx-auto">
       <div className="navbar-start">
@@ -70,19 +84,19 @@ const Navbar = () => {
               </ul>
             </li>
             <li>
-              <Link>Blogs</Link>
+              <Link to='/blogs'>Blogs</Link>
             </li>
             {menuItems}
           </ul>
         </div>
-        <Link className="btn btn-ghost w-[100px] normal-case text-xl navbar-start">
+        <Link to='/' className="btn btn-ghost w-[100px] normal-case text-xl navbar-start">
           daisyUI
         </Link>
       </div>
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
           <li>
-            <Link>Home</Link>
+            <Link to='/'>Home</Link>
           </li>
           <li tabIndex={0}>
             <Link>
@@ -110,7 +124,7 @@ const Navbar = () => {
             </ul>
           </li>
           <li>
-            <Link>Blogs</Link>
+            <Link to='/blogs'>Blogs</Link>
           </li>
           {menuItems}
         </ul>

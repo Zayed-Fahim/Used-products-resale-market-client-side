@@ -1,21 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Signup = () => {
+    const {createUser} = useContext(AuthContext)
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+    const handleSignUp = (data) =>
+        createUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+        .catch(error => console.error(error))
+    ;
   return (
     <div className="hero mt-20">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card flex-shrink-0 w-full shadow-2xl bg-base-100">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <h1 className="text-5xl font-bold my-10">Log In</h1>
+          <form onSubmit={handleSubmit(handleSignUp)}>
+            <h1 className="text-5xl font-bold my-10">Sign Up</h1>
             <div className="card-body w-[380px] lg:w-[30rem]">
               <div className="form-control">
                 <label className="label">
@@ -70,7 +79,7 @@ const Signup = () => {
                   })}
                   aria-invalid={errors.password ? "true" : "false"}
                   type="password"
-                  placeholder="password"
+                  placeholder="Your password"
                   className="input input-bordered"
                 />
                 {errors.password && (
@@ -78,11 +87,6 @@ const Signup = () => {
                     {errors.password?.message}
                   </p>
                 )}
-                <label className="label">
-                  <Link href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </Link>
-                </label>
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Sign up</button>
