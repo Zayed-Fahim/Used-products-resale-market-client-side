@@ -1,9 +1,10 @@
 import './App.css';
+import Routes from './Pages/Routes/Routes/Routes';
 
 function App() {
   return (
     <div className="App">
-        <h1>zayed</h1>
+      <Routes></Routes>
     </div>
   );
 }
