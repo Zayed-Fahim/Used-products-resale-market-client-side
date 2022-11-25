@@ -75,7 +75,7 @@ const Navbar = () => {
             {menuItems}
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-xl navbar-start">
+        <Link className="btn btn-ghost w-[100px] normal-case text-xl navbar-start">
           daisyUI
         </Link>
       </div>
