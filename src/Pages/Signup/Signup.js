@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Signup = () => {
-    const { createUser, googleSignIn } = useContext(AuthContext);
+    const { createUser, googleSignIn, updateUser } = useContext(AuthContext);
     const navigate = useNavigate();
   const {
     register,
@@ -16,7 +17,17 @@ const Signup = () => {
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+          console.log(user);
+          toast.success("User Created Successfully.");
+          const userInfo = {
+              displayName: data.name
+          }
+          updateUser(userInfo)
+              .then(() => {
+                  console.log('name updated');
+                  navigate("/");
+              })
+          .catch(error => console.error(error))
       })
       .catch((error) => console.error(error));
     };
