@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
     const { signIn, googleSignIn } = useContext(AuthContext);
@@ -17,6 +18,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        toast.success('Log In successfully')
       })
       .catch((error) => console.error(error));
     };
@@ -24,7 +26,8 @@ const Login = () => {
         googleSignIn()
             .then(result => {
                 const user = result.user;
-                console.log(user);
+              console.log(user);
+              toast.success("Log In successfully");
                 navigate('/')
         })
     }
@@ -34,7 +37,7 @@ const Login = () => {
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card flex-shrink-0 w-full shadow-2xl bg-base-100">
           <form onSubmit={handleSubmit(handleLogIn)}>
-            <h1 className="text-5xl font-bold my-10">Log In</h1>
+            <h1 className="text-5xl font-bold my-10 text-center">Log In</h1>
             <div className="card-body w-[380px] lg:w-[30rem]">
               <div className="form-control">
                 <label className="label">
@@ -83,7 +86,7 @@ const Login = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
-              <p className="my-2">
+              <p className="my-2 text-center">
                 New user?
                 <Link className="text-primary font-bold" to="/signup">
                   {" "}

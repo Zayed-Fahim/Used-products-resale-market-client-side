@@ -4,6 +4,7 @@ import Main from '../../../Layout/Main';
 import Blogs from '../../Blogs/Blogs';
 import Home from '../../Home/Home/Home';
 import Login from '../../Login/Login';
+import Route404 from '../../Route404/Route404';
 import Signup from '../../Signup/Signup';
 
 const Routes = () => {
@@ -29,6 +30,10 @@ const Routes = () => {
                     element:<Signup></Signup>
                 }
             ]
+        },
+        {
+            path: '*',
+            element:<Route404></Route404>
         }
     ])
     return (

@@ -18,13 +18,13 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
           console.log(user);
-          toast.success("User Created Successfully.");
           const userInfo = {
               displayName: data.name
           }
           updateUser(userInfo)
               .then(() => {
-                  console.log('name updated');
+                console.log('name updated');
+                toast.success("Account created successfully");
                   navigate("/");
               })
           .catch(error => console.error(error))
@@ -35,6 +35,7 @@ const Signup = () => {
       googleSignIn().then((result) => {
         const user = result.user;
         console.log(user);
+        toast.success("Account created successfully");
         navigate("/");
       });
     };
@@ -43,7 +44,7 @@ const Signup = () => {
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card flex-shrink-0 w-full shadow-2xl bg-base-100">
           <form onSubmit={handleSubmit(handleSignUp)}>
-            <h1 className="text-5xl font-bold my-10">Sign Up</h1>
+            <h1 className="text-5xl font-bold my-10 text-center">Sign Up</h1>
             <div className="card-body w-[380px] lg:w-[30rem]">
               <div className="form-control">
                 <label className="label">
@@ -110,9 +111,9 @@ const Signup = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Sign up</button>
               </div>
-              <p className="my-2">
+              <p className="my-2 text-center">
                 Already have an account?
-                <Link className="text-primary font-bold" to="/signup">
+                <Link className="text-primary font-bold" to="/login">
                   {" "}
                   Log in
                 </Link>

@@ -36,13 +36,13 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-blue-600 text-white container mx-auto">
+    <div className="navbar bg-blue-600 lg:text-white container mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-5 w-5 text-white"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -57,7 +57,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 bg-blue-600 shadow text-white rounded-box w-52"
           >
             <li>
               <Link className="text-xl font-semibold" to="/">
@@ -80,7 +80,7 @@ const Navbar = () => {
                   <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                 </svg>
               </Link>
-              <ul className="p-2">
+              <ul className="p-2 bg-blue-600">
                 <li>
                   <Link className="text-xl font-semibold">Android</Link>
                 </li>
@@ -104,7 +104,10 @@ const Navbar = () => {
           to="/"
           className="w-[8vw] normal-case text-3xl navbar-start font-bold ml-4"
         >
-          <span className="text-black">phones</span>.com
+          <div>
+            <span className="text-black">phones</span>
+            <span className="text-white">.com</span>
+          </div>
         </Link>
       </div>
       <div className="navbar-end hidden lg:flex">
