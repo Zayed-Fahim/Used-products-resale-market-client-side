@@ -4,7 +4,7 @@ import Routes from './Pages/Routes/Routes/Routes';
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
       <Routes></Routes>
       <Toaster></Toaster>
     </div>

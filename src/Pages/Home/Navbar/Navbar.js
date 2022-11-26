@@ -36,7 +36,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-blue-600 text-white container mx-auto sticky top-0">
+    <div className="navbar bg-blue-600 text-white container mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -102,9 +102,9 @@ const Navbar = () => {
         </div>
         <Link
           to="/"
-          className="w-[8vw] normal-case text-3xl navbar-start font-bold"
+          className="w-[8vw] normal-case text-3xl navbar-start font-bold ml-4"
         >
-          second<span className="text-primary">Sell</span>
+          <span className="text-black">phones</span>.com
         </Link>
       </div>
       <div className="navbar-end hidden lg:flex">
@@ -127,7 +127,7 @@ const Navbar = () => {
                 <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
               </svg>
             </Link>
-            <ul className="bg-blue-300">
+            <ul className="bg-blue-500">
               <li>
                 <Link className="font-semibold">Android</Link>
               </li>
