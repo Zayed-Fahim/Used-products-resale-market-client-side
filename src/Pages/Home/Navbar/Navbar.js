@@ -36,7 +36,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100 container mx-auto">
+    <div className="navbar bg-base-100 container mx-auto sticky top-0">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -127,15 +127,15 @@ const Navbar = () => {
                 <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
               </svg>
             </Link>
-            <ul className="p-2">
+            <ul className="bg-blue-300">
               <li>
-                <Link className="text-xl font-semibold">Android</Link>
+                <Link className="font-semibold">Android</Link>
               </li>
               <li>
-                <Link className="text-xl font-semibold">Tablet/ipad</Link>
+                <Link className="font-semibold">Tablet/ipad</Link>
               </li>
               <li>
-                <Link className="text-xl font-semibold">Iphone</Link>
+                <Link className="font-semibold">Iphone</Link>
               </li>
             </ul>
           </li>
