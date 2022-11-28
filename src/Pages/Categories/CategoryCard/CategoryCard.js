@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Category = ({ category }) => {
-  const { category_name, image, _id } = category;
+const CategoryCard = ({ category }) => {
+  const { category_name, image,_name} = category;
   return (
     <div className="lg:p-0 p-3">
-      <Link to={`/categories/${_id}`}>
+      <Link to={`/categories/${_name}`}>
         <div className="card bg-base-100 shadow-xl lg:h-[350px]">
           <figure>
             <img className="h-[258px]" src={image} alt="" />
@@ -19,4 +19,4 @@ const Category = ({ category }) => {
   );
 };
 
-export default Category;
+export default CategoryCard;

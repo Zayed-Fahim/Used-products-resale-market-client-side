@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import Category from "../Category/Category";
-
-
+import CategoryCard from "../CategoryCard/CategoryCard";
 
 const Categories = () => {
   const { data: categories = [] } = useQuery({
@@ -15,10 +13,10 @@ const Categories = () => {
       <h1 className="text-center text-3xl mt-20 font-semibold">Find your desire products</h1>
       <div className="container mx-auto mt-20 grid lg:grid-cols-3 grid-cols-1 gap-20">
         {categories.map((category) => (
-          <Category key={category._id} category={category}></Category>
+          <CategoryCard key={category._id} category={category}></CategoryCard>
         ))}
       </div>
-    </div>
+    </div>  
   );
 };
 

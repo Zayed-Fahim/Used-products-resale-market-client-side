@@ -7,7 +7,9 @@ import Home from "../../Home/Home/Home";
 import Login from "../../Login/Login";
 import Route404 from "../../Route404/Route404";
 import Signup from "../../Signup/Signup";
-import Products from "../../Products/Products";
+import Androids from "../../Categories/CategoryProducts/Android/Androids";
+import Iphones from "../../Categories/CategoryProducts/Iphone/Iphones";
+import TabletIpads from "../../Categories/CategoryProducts/TabletIpads/TabletIpads";
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -24,11 +26,16 @@ const Routes = () => {
           element: <Categories></Categories>,
         },
         {
-          path: "/categories/:id",
-          loader: ({ params }) => {
-            return fetch(`http://localhost:5000/categories/${params.id}`);
-          },
-          element: <Products></Products>
+          path: "/categories/android",
+          element: <Androids></Androids>,
+        },
+        {
+          path: "/categories/iphone",
+          element:<Iphones></Iphones>
+        },
+        {
+          path: "/categories/tablet-ipad",
+          element:<TabletIpads></TabletIpads>
         },
         {
           path: "/blogs",
