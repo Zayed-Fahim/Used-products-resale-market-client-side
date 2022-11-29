@@ -10,6 +10,7 @@ import Signup from "../../Signup/Signup";
 import Androids from "../../Categories/CategoryProducts/Android/Androids";
 import Iphones from "../../Categories/CategoryProducts/Iphone/Iphones";
 import TabletIpads from "../../Categories/CategoryProducts/TabletIpads/TabletIpads";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -27,15 +28,27 @@ const Routes = () => {
         },
         {
           path: "/categories/android",
-          element: <Androids></Androids>,
+          element: (
+            <PrivateRoute>
+              <Androids></Androids>
+            </PrivateRoute>
+          ),
         },
         {
           path: "/categories/iphone",
-          element:<Iphones></Iphones>
+          element: (
+            <PrivateRoute>
+              <Iphones></Iphones>
+            </PrivateRoute>
+          ),
         },
         {
           path: "/categories/tablet-ipad",
-          element:<TabletIpads></TabletIpads>
+          element: (
+            <PrivateRoute>
+              <TabletIpads></TabletIpads>
+            </PrivateRoute>
+          ),
         },
         {
           path: "/blogs",

@@ -10,7 +10,7 @@ const Navbar = () => {
     logOut()
       .then(() => {
         console.log("signout successfully");
-        navigate('/')
+        navigate("/");
       })
       .catch((error) => console.error(error));
   };
@@ -71,6 +71,17 @@ const Navbar = () => {
               >
                 Categories
               </Link>
+              <ul className="p-2 bg-blue-600">
+                <li>
+                  <Link to="/categories/android">Android</Link>
+                </li>
+                <li>
+                  <Link to="/categories/iphone">iPhone</Link>
+                </li>
+                <li>
+                  <Link to="/categories/tablet-ipad">Tablet/iPad</Link>
+                </li>
+              </ul>
             </li>
             <li>
               <Link className="text-xl font-semibold" to="/blogs">
@@ -101,6 +112,17 @@ const Navbar = () => {
             <Link to="/categories" className="text-xl font-semibold">
               Categories
             </Link>
+            <ul className="p-2 bg-blue-600">
+              <li>
+                <Link to="/categories/android">Android</Link>
+              </li>
+              <li>
+                <Link to="/categories/iphone">iPhone</Link>
+              </li>
+              <li>
+                <Link to="/categories/tablet-ipad">Tablet/iPad</Link>
+              </li>
+            </ul>
           </li>
           <li>
             <Link className="text-xl font-semibold" to="/blogs">

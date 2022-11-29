@@ -6,8 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Signup = () => {
-    const { createUser, googleSignIn, updateUser } = useContext(AuthContext);
-    const navigate = useNavigate();
+  const { createUser, googleSignIn, updateUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+
   const {
     register,
     formState: { errors },
@@ -17,28 +19,28 @@ const Signup = () => {
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
-          console.log(user);
-          const userInfo = {
-              displayName: data.name
-          }
-          updateUser(userInfo)
-              .then(() => {
-                console.log('name updated');
-                toast.success("Account created successfully");
-                  navigate("/");
-              })
-          .catch(error => console.error(error))
+        console.log(user);
+        navigate('/')
+        const userInfo = {
+          displayName: data.name,
+        };
+        updateUser(userInfo)
+          .then(() => {
+            console.log("name updated");
+            toast.success("Account created successfully");
+          })
+          .catch((error) => console.error(error));
       })
       .catch((error) => console.error(error));
-    };
-    const handleGoogleLogin = () => {
-      googleSignIn().then((result) => {
-        const user = result.user;
-        console.log(user);
-        toast.success("Account created successfully");
-        navigate("/");
-      });
-    };
+  };
+  const handleGoogleSignUp = () => {
+    googleSignIn().then((result) => {
+      const user = result.user;
+      console.log(user);
+      toast.success("Account created successfully");
+      navigate("/");
+    });
+  };
   return (
     <div className="hero mt-20">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -122,7 +124,7 @@ const Signup = () => {
             </div>
           </form>
           <button
-            onClick={handleGoogleLogin}
+            onClick={handleGoogleSignUp}
             className="flex justify-center items-center gap-3 border-4 p-3 rounded-lg lg:w-[26rem] w-[19.75rem] h-[3rem] lg:h-[3rem] mx-auto mb-16"
           >
             <div>

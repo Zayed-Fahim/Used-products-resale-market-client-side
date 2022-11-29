@@ -3,6 +3,9 @@ import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const BookingModal = ({ product }) => {
     const { user } = useContext(AuthContext);
+    const handleBookNowInfo = (event) => {
+        event.preventDefault();
+    }
     
   return (
     <div>
@@ -15,7 +18,7 @@ const BookingModal = ({ product }) => {
           >
             ✕
           </label>
-          <form>
+          <form onSubmit={handleBookNowInfo}>
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">Your name</span>

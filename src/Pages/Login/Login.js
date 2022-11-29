@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 
 const Login = () => {
-    const { signIn, googleSignIn } = useContext(AuthContext);
-    const navigate = useNavigate();
+  const { signIn, googleSignIn } = useContext(AuthContext);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+  navigate(from, { replace: true });
   const {
     register,
     formState: { errors },
@@ -18,20 +21,18 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        toast.success('Log In successfully')
+        toast.success("Log In successfully");
       })
       .catch((error) => console.error(error));
-    };
-    const handleGoogleLogin = () => {
-        googleSignIn()
-            .then(result => {
-                const user = result.user;
-              console.log(user);
-              toast.success("Log In successfully");
-                navigate('/')
-        })
-    }
-    
+  };
+  const handleGoogleLogin = () => {
+    googleSignIn().then((result) => {
+      const user = result.user;
+      console.log(user);
+      toast.success("Log In successfully");
+    });
+  };
+
   return (
     <div className="hero mt-20">
       <div className="hero-content flex-col lg:flex-row-reverse">
