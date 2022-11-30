@@ -52,7 +52,7 @@ const Signup = () => {
   };
   const saveUserInfo = (name, email, role) => {
     const user = { name, email, role };
-    fetch("https://used-products-resale-server-five.vercel.app/users", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

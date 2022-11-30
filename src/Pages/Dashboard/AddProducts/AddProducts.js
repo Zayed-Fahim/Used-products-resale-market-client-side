@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const AddProducts = () => {
   const [condition, setCondition] = useState(null);
   const [category, setCategory] = useState(null);
-  console.log(condition, category);
   const navigate = useNavigate();
   const {
     register,
@@ -21,9 +20,7 @@ const AddProducts = () => {
     setCategory(event.target.value);
   };
   const handleAddProduct = (data) => {
-    console.log(data);
     const image = data.productImage[0];
-    console.log(image);
     const formData = new FormData();
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_key}`;

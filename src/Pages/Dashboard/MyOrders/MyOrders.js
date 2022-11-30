@@ -20,9 +20,8 @@ const MyOrders = () => {
       return data;
     },
   });
-  console.log(bookings);
 
-  return (
+return (
     <div>
       <h1 className="text-3xl font-bold mt-3">My Orders: {bookings.length}</h1>
       <div className="lg:mt-10">

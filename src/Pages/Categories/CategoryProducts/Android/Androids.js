@@ -7,8 +7,6 @@ const Androids = () => {
   const [product, setProduct] = useState(null);
 
   //USE REACT QUERY
-  const [disabled, setDisabled] = useState(false);
-  console.log(disabled);
   const { data: androids = [] } = useQuery({
     queryKey: ["androids"],
     queryFn: () =>
@@ -28,13 +26,11 @@ const Androids = () => {
               key={android._id}
               android={android}
               setProduct={setProduct}
-              disabled={disabled}
             ></Android>
           ))}
         </div>
         {product && (
           <BookingModal
-            setDisabled={setDisabled}
             setProduct={setProduct}
             product={product}
           ></BookingModal>
