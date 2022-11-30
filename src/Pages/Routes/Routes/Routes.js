@@ -11,6 +11,8 @@ import Androids from "../../Categories/CategoryProducts/Android/Androids";
 import Iphones from "../../Categories/CategoryProducts/Iphone/Iphones";
 import TabletIpads from "../../Categories/CategoryProducts/TabletIpads/TabletIpads";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import DashboardLayout from "../../../Layout/DashboardLayout";
+import MyOrders from "../../Dashboard/MyOrders/MyOrders";
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -64,11 +66,24 @@ const Routes = () => {
         },
       ],
     },
+
+    {
+      path: '/dashboard',
+      element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+      children: [
+        {
+          path: '/dashboard/myorders',
+          element:<MyOrders></MyOrders>
+        }
+      ]
+    },
+
     {
       path: "*",
       element: <Route404></Route404>,
     },
   ]);
+
   return (
     <div>
       <RouterProvider router={router}></RouterProvider>

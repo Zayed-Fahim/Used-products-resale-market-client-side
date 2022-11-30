@@ -4,7 +4,11 @@ import BookingModal from "../../BookingModal/BookingModal";
 import Android from "./Android";
 
 const Androids = () => {
-    const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState(null);
+
+  //USE REACT QUERY
+  const [disabled, setDisabled] = useState(false);
+  console.log(disabled);
   const { data: androids = [] } = useQuery({
     queryKey: ["androids"],
     queryFn: () =>
@@ -18,10 +22,21 @@ const Androids = () => {
         </h1>
         <div className="grid lg:grid-cols-3 grid-cols-1  gap-20 my-20">
           {androids.map((android) => (
-            <Android key={android._id} android={android} setProduct={setProduct}></Android>
+            <Android
+              key={android._id}
+              android={android}
+              setProduct={setProduct}
+              disabled={disabled}
+            ></Android>
           ))}
         </div>
-        <BookingModal product={product}></BookingModal>
+        {product && (
+          <BookingModal
+            setDisabled={setDisabled}
+            setProduct={setProduct}
+            product={product}
+          ></BookingModal>
+        )}
       </div>
     </div>
   );

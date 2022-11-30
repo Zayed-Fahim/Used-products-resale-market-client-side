@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
@@ -7,8 +7,8 @@ import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Signup = () => {
   const { createUser, googleSignIn, updateUser } = useContext(AuthContext);
+  const [role, setRole] = useState(null);
   const navigate = useNavigate();
-
 
   const {
     register,
@@ -20,14 +20,14 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate('/')
+        navigate("/");
         const userInfo = {
           displayName: data.name,
         };
         updateUser(userInfo)
           .then(() => {
-            console.log("name updated");
             toast.success("Account created successfully");
+            saveUserInfo(data.name, data.email, role);
           })
           .catch((error) => console.error(error));
       })
@@ -36,10 +36,26 @@ const Signup = () => {
   const handleGoogleSignUp = () => {
     googleSignIn().then((result) => {
       const user = result.user;
-      console.log(user);
       toast.success("Account created successfully");
-      navigate("/");
     });
+  };
+  const handleRoleEmailSignUpUser = (event) => {
+    setRole(event.target.value);
+  };
+  const saveUserInfo = (name, email, role) => {
+    const user = { name, email, role };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        navigate("/");
+      });
   };
   return (
     <div className="hero mt-20">
@@ -48,6 +64,16 @@ const Signup = () => {
           <form onSubmit={handleSubmit(handleSignUp)}>
             <h1 className="text-5xl font-bold my-10 text-center">Sign Up</h1>
             <div className="card-body w-[380px] lg:w-[30rem]">
+              <select
+                name="option"
+                onChange={handleRoleEmailSignUpUser}
+                className="w-28 border-2 border-blue-600 outline-none"
+              >
+                <option>Sign up as</option>
+                <option value="Admin">Admin</option>
+                <option value="Seller">Seller</option>
+                <option value="Buyer">Buyer</option>
+              </select>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>

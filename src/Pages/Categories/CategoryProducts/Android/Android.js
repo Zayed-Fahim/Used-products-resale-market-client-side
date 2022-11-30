@@ -1,7 +1,7 @@
 import React from "react";
 import { TiTick } from "react-icons/ti";
 
-const Android = ({ android, setProduct }) => {
+const Android = ({ android, setProduct}) => {
   const {
     image,
     phone_name,
@@ -61,7 +61,7 @@ const Android = ({ android, setProduct }) => {
               htmlFor="book-now"
               className="btn btn-active btn-primary"
             >
-              Book Now
+              BOOK NOW
             </label>
           </div>
         </div>

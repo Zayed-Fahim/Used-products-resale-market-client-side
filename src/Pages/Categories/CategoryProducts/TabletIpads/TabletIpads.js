@@ -5,6 +5,8 @@ import TabletIpad from "./TabletIpad";
 
 const TabletIpads = () => {
   const [product, setProduct] = useState(null);
+  
+  //USE REACT QUERY
   const { data: tabletIpads = [] } = useQuery({
     queryKey: ["tabletIpads"],
     queryFn: () =>
@@ -25,7 +27,7 @@ const TabletIpads = () => {
             ></TabletIpad>
           ))}
         </div>
-        <BookingModal product={product}></BookingModal>
+        {product && <BookingModal setProduct={setProduct} product={product}></BookingModal>}
       </div>
     </div>
   );

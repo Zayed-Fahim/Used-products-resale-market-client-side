@@ -1,4 +1,3 @@
-import React from "react";
 import { TiTick } from "react-icons/ti";
 
 const Iphone = ({ iphone, setProduct }) => {
@@ -61,7 +60,7 @@ const Iphone = ({ iphone, setProduct }) => {
               htmlFor="book-now"
               className="btn btn-active btn-primary"
             >
-              Book Now
+              BOOK NOW
             </label>
           </div>
         </div>
