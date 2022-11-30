@@ -1,5 +1,13 @@
 # Getting Started with Create React App
 
+*in my project i am using tailwind ,react query,react form hook.
+*In this website anyone can sell this phone or buy according their needs.
+*To verify user i am using JWT
+*Use noSQl database (mongoDB) to store data
+*google social media login to create user or log in user.
+
+*Live Link: https://used-products-resale-mar-d348c.web.app/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
