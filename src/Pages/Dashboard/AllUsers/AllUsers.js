@@ -8,18 +8,23 @@ const AllUsers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch(
+        "https://used-products-resale-server-five.vercel.app/users"
+      );
       const data = await res.json();
       return data;
     },
   });
   const handleAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
-      method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("access-token")}`,
-      },
-    })
+    fetch(
+      `https://used-products-resale-server-five.vercel.app/users/admin/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access-token")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -30,7 +35,9 @@ const AllUsers = () => {
       });
   };
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`)
+    fetch(
+      `https://used-products-resale-server-five.vercel.app/users/admin/${id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

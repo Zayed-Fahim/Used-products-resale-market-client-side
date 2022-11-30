@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import BookingModal from "../../BookingModal/BookingModal";
 import Iphone from "./Iphone";
-  
+
 const Iphones = () => {
   const [product, setProduct] = useState(null);
 
@@ -10,7 +10,9 @@ const Iphones = () => {
   const { data: iphones = [] } = useQuery({
     queryKey: ["iphones"],
     queryFn: () =>
-      fetch("http://localhost:5000/iphones").then((res) => res.json()),
+      fetch("https://used-products-resale-server-five.vercel.app/iphones").then(
+        (res) => res.json()
+      ),
   });
   return (
     <div>

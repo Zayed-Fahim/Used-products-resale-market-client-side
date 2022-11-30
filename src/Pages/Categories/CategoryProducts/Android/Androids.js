@@ -12,7 +12,9 @@ const Androids = () => {
   const { data: androids = [] } = useQuery({
     queryKey: ["androids"],
     queryFn: () =>
-      fetch("http://localhost:5000/androids").then((res) => res.json()),
+      fetch(
+        "https://used-products-resale-server-five.vercel.app/androids"
+      ).then((res) => res.json()),
   });
   return (
     <div>

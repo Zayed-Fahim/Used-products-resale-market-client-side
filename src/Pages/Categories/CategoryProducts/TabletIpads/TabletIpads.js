@@ -5,12 +5,14 @@ import TabletIpad from "./TabletIpad";
 
 const TabletIpads = () => {
   const [product, setProduct] = useState(null);
-  
+
   //USE REACT QUERY
   const { data: tabletIpads = [] } = useQuery({
     queryKey: ["tabletIpads"],
     queryFn: () =>
-      fetch("http://localhost:5000/tablet-ipads").then((res) => res.json()),
+      fetch(
+        "https://used-products-resale-server-five.vercel.app/tablet-ipads"
+      ).then((res) => res.json()),
   });
   return (
     <div>
@@ -27,7 +29,12 @@ const TabletIpads = () => {
             ></TabletIpad>
           ))}
         </div>
-        {product && <BookingModal setProduct={setProduct} product={product}></BookingModal>}
+        {product && (
+          <BookingModal
+            setProduct={setProduct}
+            product={product}
+          ></BookingModal>
+        )}
       </div>
     </div>
   );

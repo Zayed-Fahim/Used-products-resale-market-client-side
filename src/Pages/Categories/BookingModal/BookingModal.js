@@ -5,8 +5,8 @@ import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const BookingModal = ({ product, setProduct }) => {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const handleBookNowInfo = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -29,7 +29,7 @@ const BookingModal = ({ product, setProduct }) => {
       buyer_phone_no: phone,
       buyer_location: location,
     };
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://used-products-resale-server-five.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

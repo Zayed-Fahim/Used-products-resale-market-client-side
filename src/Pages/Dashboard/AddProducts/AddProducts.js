@@ -4,27 +4,26 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const AddProducts = () => {
-    const [condition, setCondition] = useState(null);
-    const [category, setCategory] = useState(null);
-    console.log(condition,category)
-    const navigate = useNavigate();
+  const [condition, setCondition] = useState(null);
+  const [category, setCategory] = useState(null);
+  console.log(condition, category);
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
     handleSubmit,
-    } = useForm();
-    
-    const handleCondition = (event) => {
-        setCondition(event.target.value)
-        
-    }
-    const handleCategory = (event) => {
-        setCategory(event.target.value)
-    }
-    const handleAddProduct = (data) => {
-      console.log(data)
-        const image = data.productImage[0];
-        console.log(image)
+  } = useForm();
+
+  const handleCondition = (event) => {
+    setCondition(event.target.value);
+  };
+  const handleCategory = (event) => {
+    setCategory(event.target.value);
+  };
+  const handleAddProduct = (data) => {
+    console.log(data);
+    const image = data.productImage[0];
+    console.log(image);
     const formData = new FormData();
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_key}`;
@@ -46,21 +45,24 @@ const AddProducts = () => {
             year_of_use: data.purchaseYear,
             brand: data.brand,
           };
-            fetch("http://localhost:5000/sellers-product", {
+          fetch(
+            "https://used-products-resale-server-five.vercel.app/sellers-product",
+            {
               method: "POST",
               headers: {
                 "content-type": "application/json",
                 authorization: `bearer ${localStorage.getItem("access-token")}`,
               },
               body: JSON.stringify(productDetails),
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
-                    toast.success('Product posted successfully');
-                    navigate("/dashboard/myproducts");
-            })
-          }
+            }
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              toast.success("Product posted successfully");
+              navigate("/dashboard/myproducts");
+            });
+        }
       });
   };
   return (
@@ -154,9 +156,7 @@ const AddProducts = () => {
                 name="option"
                 className="border-2 border-base-400 h-12 pl-3 rounded-lg outline-none"
               >
-                <option>
-                  Choose phone Category
-                </option>
+                <option>Choose phone Category</option>
                 <option value="android">Android</option>
                 <option value="iphone">iPhone</option>
                 <option value="tablet/ipad">Tablet/iPad</option>
