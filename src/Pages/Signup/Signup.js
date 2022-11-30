@@ -4,11 +4,18 @@ import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import useToken from "../../hooks/useToken";
 
 const Signup = () => {
   const { createUser, googleSignIn, updateUser } = useContext(AuthContext);
   const [role, setRole] = useState(null);
   const navigate = useNavigate();
+  const [createdUserEmail, setCreatedUserEmail] = useState(null);
+  const [token] = useToken(createdUserEmail);
+
+  if (token) {
+    navigate("/");
+  }
 
   const {
     register,
@@ -36,6 +43,7 @@ const Signup = () => {
   const handleGoogleSignUp = () => {
     googleSignIn().then((result) => {
       const user = result.user;
+      console.log(user);
       toast.success("Account created successfully");
     });
   };
@@ -54,7 +62,7 @@ const Signup = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        navigate("/");
+        setCreatedUserEmail(email);
       });
   };
   return (

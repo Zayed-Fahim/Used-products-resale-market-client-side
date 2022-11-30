@@ -122,7 +122,7 @@ const BookingModal = ({ product, setProduct }) => {
                 <span className="label-text">Resale Price</span>
               </label>
               <input
-                type="text"
+                type="number"
                 name="resalePrice"
                 defaultValue={product?.resale_price}
                 disabled
@@ -134,7 +134,7 @@ const BookingModal = ({ product, setProduct }) => {
                 <span className="label-text">Your phone</span>
               </label>
               <input
-                type="text"
+                type="phone"
                 name="phone"
                 placeholder="Your phone"
                 className="input input-bordered w-full"
