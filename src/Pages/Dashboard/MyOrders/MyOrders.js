@@ -20,6 +20,7 @@ const MyOrders = () => {
       return data;
     },
   });
+    console.log(bookings)
 
   return (
     <div>
@@ -39,17 +40,18 @@ const MyOrders = () => {
               </tr>
             </thead>
             <tbody>
-              {bookings?.map((booking, i) => (
-                <tr key={i} className="text-center">
-                  <th>{i + 1}</th>
-                  <td>{booking.category_name}</td>
-                  <td>{booking.brand_name}</td>
-                  <td>{booking.phone_name}</td>
-                  <td>${booking.resale_price}</td>
-                  <td>{booking.buyer_phone_no}</td>
-                  <td>{booking.buyer_location}</td>
-                </tr>
-              ))}
+              {bookings &&
+                bookings?.map((booking, i) => (
+                  <tr key={booking._id} className="text-center">
+                    <th>{i + 1}</th>
+                    <td>{booking.category_name}</td>
+                    <td>{booking.brand_name}</td>
+                    <td>{booking.phone_name}</td>
+                    <td>${booking.resale_price}</td>
+                    <td>{booking.buyer_phone_no}</td>
+                    <td>{booking.buyer_location}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

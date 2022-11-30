@@ -134,7 +134,7 @@ const BookingModal = ({ product, setProduct }) => {
                 <span className="label-text">Your phone</span>
               </label>
               <input
-                type="phone"
+                type="number"
                 name="phone"
                 placeholder="Your phone"
                 className="input input-bordered w-full"

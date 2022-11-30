@@ -13,6 +13,12 @@ import TabletIpads from "../../Categories/CategoryProducts/TabletIpads/TabletIpa
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import DashboardLayout from "../../../Layout/DashboardLayout";
 import MyOrders from "../../Dashboard/MyOrders/MyOrders";
+import AllUsers from "../../Dashboard/AllUsers/AllUsers";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import AddProducts from "../../Dashboard/AddProducts/AddProducts";
+import SellerRoute from "../SellerRoute/SellerRoute";
+import BuyerRoute from "../BuyerRoute/BuyerRoute";
+import MyProducts from "../../Dashboard/MyProducts/MyProducts";
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -68,16 +74,43 @@ const Routes = () => {
     },
 
     {
-      path: '/dashboard',
-      element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+      path: "/dashboard",
+      element: (
+        <PrivateRoute>
+          <DashboardLayout></DashboardLayout>
+        </PrivateRoute>
+      ),
       children: [
         {
-          path: '/dashboard/myorders',
-          element:<MyOrders></MyOrders>
+          path: "/dashboard/myorders",
+          element: (
+            <BuyerRoute>
+              <MyOrders></MyOrders>
+            </BuyerRoute>
+          ),
+        },
+        {
+          path: "/dashboard/allusers",
+          element: (
+            <AdminRoute>
+              <AllUsers></AllUsers>
+            </AdminRoute>
+          ),
+        },
+        {
+          path: "/dashboard/addproducts",
+          element: (
+            <SellerRoute>
+              <AddProducts></AddProducts>
+            </SellerRoute>
+          ),
+        },
+        {
+          path: '/dashboard/myproducts',
+          element:<MyProducts></MyProducts>
         }
-      ]
+      ],
     },
-
     {
       path: "*",
       element: <Route404></Route404>,
